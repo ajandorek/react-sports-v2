@@ -1,0 +1,13 @@
+.sidebar {
+  width: 20%;
+  float: right;
+  text-align: center;
+}
+
+.sidebar__form {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
