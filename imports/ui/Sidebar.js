@@ -4,7 +4,7 @@ export class Sidebar extends Component {
   render() {
     return (
       <div className='sidebar'>
-        <h3>Add New Pickup Game</h3>
+        <h1>Add A New Game</h1>
         <form className='sidebar__form'>
           <label>Event Name</label>
           <input type='text' />

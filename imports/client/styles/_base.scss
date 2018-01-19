@@ -4,7 +4,7 @@
 }
 
 html {
-  font-size: 62.5%
+  font-size: 62.5%;
 }
 
 body {
@@ -38,6 +38,7 @@ select {
   font-size: $base-font-size;
   margin-bottom: $space;
   padding: $input-spacing;
+  background: white;
 }
 
 select {
