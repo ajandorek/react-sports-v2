@@ -32,9 +32,20 @@ a {
 
 input[type=text], 
 input[type=email], 
-input[type=password] {
+input[type=password],
+select {
   border: 1px solid $input-border;
   font-size: $base-font-size;
   margin-bottom: $space;
   padding: $input-spacing;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-image: url(https://image.flaticon.com/icons/svg/60/60781.svg);
+  background-position: 95% 60%;
+  background-repeat: no-repeat;
+  background-size: 10px;
 }

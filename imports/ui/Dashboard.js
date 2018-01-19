@@ -7,7 +7,7 @@ import Sidebar from './Sidebar';
 export default () => {
   return (
     <div>
-      <PrivateHeader title='Dashboard' />
+      <PrivateHeader title='React Sports' />
       <Map />
       <Sidebar />
     </div>
