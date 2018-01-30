@@ -19,7 +19,7 @@ export class MapContainer extends Component {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: !this.state.showingInfoWindow
     });
   }
  
@@ -44,7 +44,7 @@ export class MapContainer extends Component {
           style={{justifyContent: 'space-between', width: '100%', position: 'absolute'}}
           zoom={12}>
         <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
+                name={'Pickup Game'} />
  
         <InfoWindow
           marker={this.state.activeMarker}
