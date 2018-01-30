@@ -10,6 +10,7 @@ export class Sidebar extends Component {
           <input type='text' />
           <label>Sport</label>
           <select>
+            <option value="" disabled selected>Select your sport</option>
             <option value="Baseball">Baseball</option>
             <option value="Basketball">Basketball</option>
             <option value="Football">Football</option>
