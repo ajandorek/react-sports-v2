@@ -13,6 +13,10 @@ export class Sidebar extends Component {
     }
   }
 
+  handleInputChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
   handleSubmit(e) {
     // let momentTime = moment(this.state.time);
     // let momentDate = moment(this.state.date);
@@ -34,13 +38,13 @@ export class Sidebar extends Component {
     //   time: appointmentMoment,
     // }).then(() => {
     //   this.props.fetchEvents('#');
-    //   this.setState({
-    //     title: '',
-    //     time: '',
-    //     date: '',
-    //     sport: '',
-    //     location: ''
-    //   });
+      this.setState({
+        title: '',
+        time: '',
+        date: '',
+        sport: '',
+        location: ''
+      });
     // });
   }
   render() {
@@ -53,13 +57,15 @@ export class Sidebar extends Component {
             type='text'
             placeholder='Event Name'
             value={this.state.title}
-            onChange={(e, value) => this.setState({ title: value })}
+            name='title'
+            onChange={this.handleInputChange.bind(this)}
           />
           <label>Sport</label>
           <select
             value={this.state.sport}
-            onChange={(event, index, value) => this.setState({ sport: value })}
-            type="select"
+            onChange={this.handleInputChange.bind(this)}
+            type='select'
+            name='sport'
           >
             <option value="" disabled selected>Select your sport</option>
             <option value="Baseball">Baseball</option>
@@ -74,14 +80,16 @@ export class Sidebar extends Component {
             type='text'
             placeholder='Location'
             value={this.state.location}
-            onChange={(e, value) => this.setState({ location: value })}
+            onChange={this.handleInputChange.bind(this)}
+            name='location'
           />
           <label>Time</label>
           <input
             type='text'
             placeholder='Time'
             value={this.state.time}
-            onChange={(e, value) => this.setState({ time: value })}
+            onChange={this.handleInputChange.bind(this)}
+            name='time'
           />
           <button
             className='button'
