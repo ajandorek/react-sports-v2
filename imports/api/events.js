@@ -35,7 +35,7 @@ Meteor.methods({
       }
     }).validate({ event, sport, location, time });
 
-    Links.insert({
+    Events.insert({
       _id: shortid.generate(),
       event,
       sport,
