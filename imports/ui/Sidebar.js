@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment';
+import { Meteor } from 'meteor/meteor';
 
 export class Sidebar extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export class Sidebar extends Component {
   }
 
   handleInputChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(e) {
@@ -28,9 +29,8 @@ export class Sidebar extends Component {
     //   minute: momentTime.minutes()
     // });
     // console.log(moment(appointmentMoment._d).format('MM/DD/YYYY hh:mm A'));
+    const { title, time, sport, location } = this.state;
     e.preventDefault();
-    console.log(this.state);
-
     // axios.post('api/events', {
     //   title: this.state.title,
     //   sport: this.state.sport,
@@ -38,13 +38,15 @@ export class Sidebar extends Component {
     //   time: appointmentMoment,
     // }).then(() => {
     //   this.props.fetchEvents('#');
-      this.setState({
-        title: '',
-        time: '',
-        date: '',
-        sport: '',
-        location: ''
-      });
+    Meteor.call('events.insert', title, sport, location, time, (err, res) => {
+      if (!err) {
+        console.log('Event Saved');
+        console.log(this.state);
+      } else {
+        console.log('Submission Error', err);
+        console.log(this.state);
+      }
+    });
     // });
   }
   render() {
