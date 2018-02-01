@@ -11,65 +11,36 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'events.insert'(url) {
+  'events.insert'(event, sport, location, time) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     new SimpleSchema({
-      url: {
+      event: {
         type: String,
-        label: 'Your link',
-        regEx: SimpleSchema.RegEx.Url
+        label: 'Event name'
+      }, 
+      sport: {
+        type: String,
+        label: 'Sport'
+      },
+      location: {
+        type: String,
+        label: 'Event Location'
+      },
+      time: {
+        type: String,
+        label: 'Event Time'
       }
-    }).validate({ url });
+    }).validate({ event, sport, location, time });
 
     Links.insert({
       _id: shortid.generate(),
-      url,
-      userId: this.userId,
-      visible: true,
-      visitedCount: 0,
-      lastVisitedAt: null
+      event,
+      sport,
+      location,
+      time
     });
-  },
-  'links.setVisibility'(_id, visible) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      },
-      visible: {
-        type: Boolean
-      }
-    }).validate({_id, visible});
-
-    Links.update({
-      _id,
-      userId: this.userId
-    },
-      { $set: { visible } 
-    });
-  },
-  'links.trackVisit'(_id) {
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      }
-    }).validate({_id});
-
-    Links.update({ _id }, {
-      $set: {
-        lastVisitedAt: new Date().getTime(),
-        },
-        $inc: {
-          visitedCount: 1
-        }
-    })
   }
 });
