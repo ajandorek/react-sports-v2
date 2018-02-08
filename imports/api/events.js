@@ -5,7 +5,7 @@ import { Mongo } from 'meteor/mongo';
 export const Events = new Mongo.Collection('events');
 
 if (Meteor.isServer) {
-  Meteor.publish('links', function () {
+  Meteor.publish('events', function () {
     console.log('Event Published');
   });
 }
