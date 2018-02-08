@@ -6,7 +6,7 @@ export const Events = new Mongo.Collection('events');
 
 if (Meteor.isServer) {
   Meteor.publish('events', function () {
-    console.log('Event Published');
+    return Events.find();
   });
 }
 
