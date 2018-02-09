@@ -32,13 +32,7 @@ export class Sidebar extends Component {
     const { title, time, sport, location } = this.state;
     e.preventDefault();
     console.log(this.state);
-    // axios.post('api/events', {
-    //   title: this.state.title,
-    //   sport: this.state.sport,
-    //   location: this.state.location,
-    //   time: appointmentMoment,
-    // }).then(() => {
-    //   this.props.fetchEvents('#');
+
     Meteor.call('events.insert', title, sport, location, time, (err, res) => {
       if (!err) {
         console.log('Event Saved');
@@ -54,8 +48,8 @@ export class Sidebar extends Component {
       sport: '',
       location: ''
     });
-    // });
   }
+
   render() {
     return (
       <div className='sidebar'>

@@ -32,7 +32,11 @@ Meteor.methods({
       time: {
         type: String,
         label: 'Event Time'
-      }
+      },
+      // latlng: {
+      //   type: Object,
+      //   label: 'latlng'
+      // }
     }).validate({ event, sport, location, time });
 
     Events.insert({
