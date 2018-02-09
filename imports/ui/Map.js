@@ -44,6 +44,20 @@ export class MapContainer extends Component {
     });
   }
 
+  renderInfoWindow() {
+    // return this.state.events.map((event) => {
+    return (
+      <InfoWindow
+        marker={this.state.activeMarker}
+        visible={this.state.showingInfoWindow}>
+        <div>
+          <h1>{this.state.selectedPlace.name}</h1>
+        </div>
+      </InfoWindow>
+    )
+    // });
+  }
+
   render() {
     return (
       <Map google={this.props.google}
@@ -57,14 +71,7 @@ export class MapContainer extends Component {
         zoom={12}>
         <Marker onClick={this.onMarkerClick}
           name={'Pickup Game'} />
-
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
+        {this.renderInfoWindow()}
       </Map>
     )
   }
