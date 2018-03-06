@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 import { Meteor } from 'meteor/meteor';
+import { geocodeAddress } from '../helpers/helpers';
 
 export class Sidebar extends Component {
   constructor(props) {
@@ -29,9 +30,11 @@ export class Sidebar extends Component {
     //   minute: momentTime.minutes()
     // });
     // console.log(moment(appointmentMoment._d).format('MM/DD/YYYY hh:mm A'));
+    
     const { title, time, sport, location } = this.state;
     e.preventDefault();
     console.log(this.state);
+    const res = geocodeAddress(location);
 
     Meteor.call('events.insert', title, sport, location, time, (err, res) => {
       if (!err) {
@@ -70,7 +73,7 @@ export class Sidebar extends Component {
             type='select'
             name='sport'
           >
-            <option value="" disabled selected>Select your sport</option>
+            <option value="" disabled defaultValue={true}>Select your sport</option>
             <option value="Baseball">Baseball</option>
             <option value="Basketball">Basketball</option>
             <option value="Football">Football</option>

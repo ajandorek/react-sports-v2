@@ -13,7 +13,6 @@ export class MapContainer extends Component {
       events: []
     }
 
-    // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
   }
