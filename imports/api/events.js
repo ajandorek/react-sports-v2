@@ -11,7 +11,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'events.insert'(event, sport, location, time) {
+  'events.insert'(event, sport, location, time, latlng) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -33,17 +33,18 @@ Meteor.methods({
         type: String,
         label: 'Event Time'
       },
-      // latlng: {
-      //   type: Object,
-      //   label: 'latlng'
-      // }
-    }).validate({ event, sport, location, time });
+      latlng: {
+        type: Object,
+        label: 'latlng'
+      }
+    }).validate({ event, sport, location, time, latlng });
 
     Events.insert({
       event,
       sport,
       location,
-      time
+      time,
+      latlng
     });
   }
 });
