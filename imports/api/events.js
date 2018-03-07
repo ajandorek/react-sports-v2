@@ -35,7 +35,8 @@ Meteor.methods({
       },
       latlng: {
         type: Object,
-        label: 'latlng'
+        label: 'latlng',
+        blackbox: true
       }
     }).validate({ event, sport, location, time, latlng });
 
