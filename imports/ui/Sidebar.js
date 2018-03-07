@@ -33,7 +33,6 @@ export class Sidebar extends Component {
     
     const { title, time, sport, location } = this.state;
     e.preventDefault();
-    console.log(this.state);
     const latlng = geocodeAddress(location).then(latlng => {
       Meteor.call('events.insert', title, sport, location, time, latlng, (err, res) => {
         if (!err) {
