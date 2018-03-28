@@ -1,18 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import moment from 'moment';
 import { Meteor } from 'meteor/meteor';
 import { geocodeAddress } from '../helpers/helpers';
+import DatePicker from 'react-datepicker';
 
 export class Sidebar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       title: '',
       time: '',
-      date: '',
+      date: moment(),
       sport: '',
       location: ''
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
   }
 
   handleInputChange(event) {
@@ -30,7 +38,7 @@ export class Sidebar extends Component {
     //   minute: momentTime.minutes()
     // });
     // console.log(moment(appointmentMoment._d).format('MM/DD/YYYY hh:mm A'));
-    
+
     const { title, time, sport, location } = this.state;
     e.preventDefault();
     const latlng = geocodeAddress(location).then(latlng => {
@@ -54,25 +62,27 @@ export class Sidebar extends Component {
 
   render() {
     return (
-      <div className='sidebar'>
+      <div className="sidebar">
         <h1>Add A New Game</h1>
-        <form className='sidebar__form'>
+        <form className="sidebar__form">
           <label>Event Name</label>
           <input
-            type='text'
-            placeholder='Event Name'
+            type="text"
+            placeholder="Event Name"
             value={this.state.title}
-            name='title'
+            name="title"
             onChange={this.handleInputChange.bind(this)}
           />
           <label>Sport</label>
           <select
             value={this.state.sport}
             onChange={this.handleInputChange.bind(this)}
-            type='select'
-            name='sport'
+            type="select"
+            name="sport"
           >
-            <option value="" disabled defaultValue={true}>Select your sport</option>
+            <option value="" disabled defaultValue={true}>
+              Select your sport
+            </option>
             <option value="Baseball">Baseball</option>
             <option value="Basketball">Basketball</option>
             <option value="Football">Football</option>
@@ -82,29 +92,20 @@ export class Sidebar extends Component {
           </select>
           <label>Location</label>
           <input
-            type='text'
-            placeholder='Location'
+            type="text"
+            placeholder="Location"
             value={this.state.location}
             onChange={this.handleInputChange.bind(this)}
-            name='location'
+            name="location"
           />
           <label>Time</label>
-          <input
-            type='text'
-            placeholder='Time'
-            value={this.state.time}
-            onChange={this.handleInputChange.bind(this)}
-            name='time'
-          />
-          <button
-            className='button'
-            onClick={this.handleSubmit.bind(this)}
-          >
+          <DatePicker selected={this.state.startDate} onChange={this.handleChange} />
+          <button className="button" onClick={this.handleSubmit.bind(this)}>
             Submit
           </button>
         </form>
       </div>
-    )
+    );
   }
 }
 
