@@ -5,7 +5,7 @@ import { Mongo } from 'meteor/mongo';
 export const Events = new Mongo.Collection('events');
 
 if (Meteor.isServer) {
-  Meteor.publish('events', function () {
+  Meteor.publish('events', function() {
     return Events.find();
   });
 }
@@ -20,7 +20,7 @@ Meteor.methods({
       event: {
         type: String,
         label: 'Event name'
-      }, 
+      },
       sport: {
         type: String,
         label: 'Sport'
@@ -30,7 +30,7 @@ Meteor.methods({
         label: 'Event Location'
       },
       time: {
-        type: String,
+        type: Date,
         label: 'Event Time'
       },
       latlng: {

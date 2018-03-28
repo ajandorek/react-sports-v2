@@ -23,6 +23,8 @@ export class Sidebar extends Component {
     this.setState({
       startDate: date
     });
+
+    console.log(this.state.startDate._d.toString());
   }
 
   handleInputChange(event) {
@@ -41,25 +43,28 @@ export class Sidebar extends Component {
     // });
     // console.log(moment(appointmentMoment._d).format('MM/DD/YYYY hh:mm A'));
 
-    const { title, time, sport, location } = this.state;
+    const { title, startDate, sport, location } = this.state;
     e.preventDefault();
-    const latlng = geocodeAddress(location).then(latlng => {
-      Meteor.call('events.insert', title, sport, location, time, latlng, (err, res) => {
-        if (!err) {
-          console.log('Event Saved');
-        } else {
-          console.log('Submission Error', err);
-        }
+    startDate = startDate.toDate();
+    const latlng = geocodeAddress(location)
+      .then(latlng => {
+        Meteor.call('events.insert', title, sport, location, startDate, latlng, (err, res) => {
+          if (!err) {
+            console.log('Event Saved');
+          } else {
+            console.log('Submission Error', err);
+          }
+        });
+      })
+      .then(() => {
+        this.setState({
+          title: '',
+          time: '',
+          startDate: moment(),
+          sport: '',
+          location: ''
+        });
       });
-    });
-
-    this.setState({
-      title: '',
-      time: '',
-      date: '',
-      sport: '',
-      location: ''
-    });
   }
 
   render() {
