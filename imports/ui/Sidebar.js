@@ -4,13 +4,15 @@ import { Meteor } from 'meteor/meteor';
 import { geocodeAddress } from '../helpers/helpers';
 import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 export class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
       time: '',
-      date: moment(),
+      startDate: moment(),
       sport: '',
       location: ''
     };
@@ -99,7 +101,12 @@ export class Sidebar extends Component {
             name="location"
           />
           <label>Time</label>
-          <DatePicker selected={this.state.startDate} onChange={this.handleChange} />
+          <DatePicker
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+            showTimeSelect
+            dateFormat="LLL"
+          />
           <button className="button" onClick={this.handleSubmit.bind(this)}>
             Submit
           </button>
