@@ -74,15 +74,15 @@ export class MapContainer extends Component {
         style={{ justifyContent: 'space-between', width: '100%', position: 'absolute' }}
         zoom={12}
       >
-        {this.state.events.map(event => {
-          <Marker
-            onClick={this.onMarkerClick}
-            name={event.event}
-            position={{
-              lat: 30.2672,
-              lng: -97.7431
-            }}
-          />;
+        {this.state.events.map((event, i) => {
+          return (
+            <Marker
+              key={i}
+              onClick={this.onMarkerClick}
+              name={event.event}
+              position={event.latlng}
+            />
+          );
         })}
         {this.renderInfoWindow()}
       </Map>
