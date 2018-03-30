@@ -43,6 +43,8 @@ export class MapContainer extends Component {
     });
   }
 
+  renderMarkers() {}
+
   renderInfoWindow() {
     // return this.state.events.map((event) => {
     return (
@@ -73,8 +75,14 @@ export class MapContainer extends Component {
         zoom={12}
       >
         {this.state.events.map(event => {
-          console.log('here');
-          <Marker onClick={this.onMarkerClick} name={event.event} position={event.latlng} />;
+          <Marker
+            onClick={this.onMarkerClick}
+            name={event.event}
+            position={{
+              lat: 30.2672,
+              lng: -97.7431
+            }}
+          />;
         })}
         {this.renderInfoWindow()}
       </Map>
