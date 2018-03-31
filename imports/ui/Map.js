@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import moment from 'moment';
 
 import { Events } from '../api/events';
 
@@ -54,7 +55,10 @@ export class MapContainer extends Component {
         onClose={this.onMapClicked}
       >
         <div>
-          <h1>{this.state.selectedPlace.name}</h1>
+          <p>Name: {this.state.selectedPlace.name}</p>
+          <p>Location: {this.state.selectedPlace.location}</p>
+          <p>Time: {moment(this.state.selectedPlace.time).format('MMMM Do YYYY, hh:mm a')}</p>
+          <p>Sport: {this.state.selectedPlace.sport}</p>
         </div>
       </InfoWindow>
     );
@@ -80,6 +84,9 @@ export class MapContainer extends Component {
               key={i}
               onClick={this.onMarkerClick}
               name={event.event}
+              location={event.location}
+              time={event.time}
+              sport={event.sport}
               position={event.latlng}
             />
           );
