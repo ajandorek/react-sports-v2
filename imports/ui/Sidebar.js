@@ -32,17 +32,6 @@ export class Sidebar extends Component {
   }
 
   handleSubmit(e) {
-    // let momentTime = moment(this.state.time);
-    // let momentDate = moment(this.state.date);
-    // let appointmentMoment = moment({
-    //   year: momentDate.year(),
-    //   month: momentDate.month(),
-    //   day: momentDate.date(),
-    //   hour: momentTime.hours(),
-    //   minute: momentTime.minutes()
-    // });
-    // console.log(moment(appointmentMoment._d).format('MM/DD/YYYY hh:mm A'));
-
     const { title, startDate, sport, location } = this.state;
     e.preventDefault();
     startDate = startDate.toDate();
@@ -107,10 +96,12 @@ export class Sidebar extends Component {
           />
           <label>Time</label>
           <DatePicker
+            className="sidebar__form-datepicker"
             selected={this.state.startDate}
             onChange={this.handleChange}
             showTimeSelect
             dateFormat="LLL"
+            style={{ width: '90%' }}
           />
           <button className="button" onClick={this.handleSubmit.bind(this)}>
             Submit
