@@ -6,6 +6,13 @@ To view the current app build click [here](cryptic-reef-91472.herokuapp.com);
 
 To run locally, clone to machine and run the following commands
 
+Technologies:
+
+* React
+* Meteor
+* Mongo
+* Passport
+
 ```
 npm install
 npm run start
