@@ -55,20 +55,20 @@ export class MapContainer extends Component {
         onClose={this.onMapClicked}
       >
         <div className="info-window">
-          <p>
-            <span className="info-window--text">Name: </span>
+          <p className="info-window--text">
+            <span className="info-window--title">Name: </span>
             {this.state.selectedPlace.name}
           </p>
-          <p>
-            <span className="info-window--text">Location: </span>
+          <p className="info-window--text">
+            <span className="info-window--title">Location: </span>
             {this.state.selectedPlace.location}
           </p>
-          <p>
-            <span className="info-window--text">Time: </span>
+          <p className="info-window--text">
+            <span className="info-window--title">Time: </span>
             {moment(this.state.selectedPlace.time).format('MMMM Do YYYY, hh:mm a')}
           </p>
-          <p>
-            <span className="info-window--text">Sport: </span>
+          <p className="info-window--text">
+            <span className="info-window--title">Sport: </span>
             {this.state.selectedPlace.sport}
           </p>
         </div>
