@@ -22,6 +22,10 @@ export class MapContainer extends Component {
     this.onMapClicked = this.onMapClicked.bind(this);
   }
 
+  getUserLocation() {
+    this.setState({ initialLatLng: navigator.geolocation.getCurrentPosition() });
+  }
+
   onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
@@ -82,6 +86,9 @@ export class MapContainer extends Component {
   }
 
   render() {
+    // {
+    //   this.getUserLocation();
+    // }
     return (
       <Map
         google={this.props.google}
