@@ -11,7 +11,11 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      events: []
+      events: [],
+      initialLatLng: {
+        lat: 30.2672,
+        lng: -97.7431
+      }
     };
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -82,10 +86,7 @@ export class MapContainer extends Component {
       <Map
         google={this.props.google}
         onClick={this.onMapClicked}
-        initialCenter={{
-          lat: 30.2672,
-          lng: -97.7431
-        }}
+        initialCenter={this.state.initialLatLng}
         containerStyle={{ display: 'flex', height: 'calc(100vh - 6rem)', width: '80%' }}
         style={{ justifyContent: 'space-between', width: '100%', position: 'absolute' }}
         zoom={12}
